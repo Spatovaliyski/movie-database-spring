@@ -1,0 +1,84 @@
+.login,
+.register,
+.error {
+    max-width: 560px;
+    background: #FFF;
+    padding: 2em;
+    margin: 0 auto;
+    //border-radius: 6px;
+    box-shadow: 0 3px 2px -4px #000;
+    box-shadow: 5px 6px $color-primary;
+    border: 2px solid $color-primary;
+    border-bottom-right-radius: 0;
+
+    &-wrap {
+        width: 100%;
+    }
+
+    form {
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    input {
+        margin-bottom: 1.5em;
+        padding-left: .25em;
+    }
+
+    label {
+        color: $color-primary;
+        font-weight: bold;
+    }
+
+    .register-button {
+        text-align: right;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn {
+        display: inline-block;
+    }
+}
+
+.login-row {
+    width: 100%;
+
+    &:last-child {
+        margin-bottom: 1.5em;
+    }
+
+    input,
+    label {
+        display: block;
+        width: 100%;
+    }
+}
+
+// .login,
+// .register {
+//     transform: translateY(10px);
+//     transition-delay: .2s;
+//     transition: .2s ease;
+
+//     .loaded & {
+//         transform: translateY(0);
+//     }
+// }
+
+.login-wrap,
+.register-wrap,
+.error-wrap {
+    .heading {
+        transform: translateY(35px);
+        transition-delay: .2s;
+        transition: .2s ease;
+    
+        .loaded & {
+            transform: translateY(0);
+        }
+    }
+}

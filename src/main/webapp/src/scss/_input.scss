@@ -1,0 +1,45 @@
+input[type="password"],
+input[type="text"],
+input[type="email"] {
+    border: 1px solid $color-accent;
+    padding: .5em 1em;
+    color: $color-primary;
+
+    &:focus {
+        border-radius: 0;
+        border-color: $color-primary;
+        outline: 1px $color-primary;
+    }
+}
+
+.btn {
+    &-primary {
+        background: $color-primary;
+        border-color: $color-primary;
+        border-radius: 2px;
+
+        &:hover,
+        &:focus,
+        &:active,
+        &:not(:disabled):not(.disabled).active,
+        &:not(:disabled):not(.disabled):active,
+        &:not(:disabled):not(.disabled).active:focus, 
+        &:not(:disabled):not(.disabled):active:focus
+         {
+            outline: none;
+            box-shadow: none;
+            background: $color-accent;
+            border-color: $color-accent;
+        }
+
+        
+    }
+}
+
+.login,
+.register {
+    input {
+        border: none;
+        border-bottom: 1px solid $color-accent;
+    }
+}
