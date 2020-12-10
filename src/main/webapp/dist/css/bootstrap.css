@@ -10292,19 +10292,47 @@ h1, h2, h3, h4, h5, h6 {
       margin: -20px;
       filter: blur(10px); }
   .single-movie-thumbnail picture {
-    max-width: 380px;
+    max-width: 240px;
+    min-width: 240px;
+    width: 100%;
     display: block;
     box-shadow: 0 6px 2px -4px #111; }
   .single-movie-thumbnail img {
     width: 100%;
     display: block; }
   .single-movie-meta {
+    padding-top: 2em;
     padding-left: 4em;
     color: #FFF; }
   .single-movie-title {
     color: #FFF;
     font-size: 2em;
     font-weight: 600; }
+  .single-movie-date {
+    color: rgba(255, 255, 255, 0.65);
+    margin-left: .25em; }
+  .single-movie-details {
+    margin: .5em 0 1em 0;
+    color: rgba(255, 255, 255, 0.65); }
+    .single-movie-details span {
+      position: relative;
+      padding-left: 1.25em; }
+      .single-movie-details span:before {
+        line-height: 1;
+        content: '\2022';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 7px;
+        display: inline-flex;
+        align-content: center;
+        align-items: center;
+        z-index: -1; }
+      .single-movie-details span:first-child:before {
+        display: none; }
+      .single-movie-details span:first-child {
+        padding-left: 0; }
 
 input[type="password"],
 input[type="text"],

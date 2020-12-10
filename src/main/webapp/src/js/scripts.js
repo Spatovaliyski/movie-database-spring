@@ -73,25 +73,20 @@
 				let voteRating = result.vote_average;
 				let recommendation;
 
+				let date = new Date(result.release_date);
+				
 				$('.single-movie-poster').append(`<img src="https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${result.poster_path}">`);
 				$('.single-movie-thumbnail').append(`<picture><img src="https://image.tmdb.org/t/p/w440_and_h660_face/${result.poster_path}"></picture>`)
-				$('.single-movie-date').append(`${result.release_date}`);
-				$('.single-movie-title').append(`${result.title}`);
+				$('.single-movie-title').append(`${result.title}` + "<span class='single-movie-date'>(" + date.getFullYear() + ")</span>");
 				$('.single-movie-overview').append(`${result.overview}`);
 
-				// $('.movies-list').append(`
-				// 	<li class="movie-item">
-				// 	<div class="movie-rating"><span>${item.vote_average}</span><img class="movie-recommendation" src="${recommendation}" alt=""/></div>
-				// 	<aside class="movie-thumbnail">
-				// 		<picture><img src="https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${item.poster_path}"></picture>
-				// 	</aside>
-				// 	<div class="movie-meta">
-				// 		<p class="movie-release-date">${item.release_date}</p>
-				// 		<h2 class="movie-title">${item.title}</h2>
-				// 		<div class="movie-description">${item.overview}</div>
-				// 	</div>
-				// </li>
-				// `);
+				let genresList = [];
+				jQuery.each(result.genres, function(index, item) {
+					return genresList.push(String(item.name).split(',')[0]);
+				});
+				
+				$('.single-movie-details .runtime').prepend(result.runtime);
+				$('.single-movie-details .genres').append(genresList.join(', '));
 			}
 		});
 	}
