@@ -20,12 +20,6 @@ public class CommentBean implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "temp", length = 5, precision = 2, nullable = true)
-	private double temp;
-	
-	@Column(name = "city", length = 250, nullable = false)
-	private String city;
-	
 	@Column(name = "comment", length = 1000)
 	private String comment;
 	
@@ -36,6 +30,10 @@ public class CommentBean implements Serializable {
 	@JoinColumn(name = "user_id")
 	private UserBean user;
 
+	@Column(name = "rating", length = 5)
+	private int rating;
+
+	
 	public int getId() {
 		return id;
 	}
@@ -44,20 +42,12 @@ public class CommentBean implements Serializable {
 		this.id = id;
 	}
 
-	public double getTemp() {
-		return temp;
+	public int getRating() {
+		return rating;
 	}
 
-	public void setTemp(double temp) {
-		this.temp = temp;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 
 	public String getComment() {

@@ -87,10 +87,46 @@
 				
 				$('.single-movie-details .runtime').prepend(result.runtime);
 				$('.single-movie-details .genres').append(genresList.join(', '));
+				$('.movie-id').val(movieId);
 			}
 		});
 	}
 
+	let me;
+
+	// function getWhoAmI(){
+	// 	$.ajax({
+	// 		url : "/whoAmI",
+	// 		method : "GET",
+	// 		complete : function(data){ 	
+	// 			switch(data.status){
+	// 			case 200:
+	// 				me = data.responseJSON;
+	// 				break;
+	// 			case 401 :
+	// 				window.location.href="index.html";
+	// 				break;
+	// 			}  				
+
+	// 		},fail : function(){
+	// 			window.location.href="index.html";
+	// 		}
+	// 	});
+	// }
+
+	$('#logout').on('click', function(){
+		$.ajax({
+			url: "logout",
+			method: "POST",
+			complete : function(data){
+				if(data.status == 401){
+					alert("ERROR!");
+				}
+
+				window.location.href = "index.html";
+			}
+		})		
+	});
 
 	if ($('body').hasClass('page-movie')) {
 		getMovie();
@@ -98,4 +134,10 @@
 		// Initial load of the movies list, Pre-selected Year 2020 - Action
 		doRequest(year, genre);
 	}
+
+	if ( ! $('body').hasClass('page-login')) {
+		//getWhoAmI();
+	}
+
+	//getWhoAmI();
 });

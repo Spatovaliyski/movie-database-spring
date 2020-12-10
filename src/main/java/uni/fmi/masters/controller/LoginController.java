@@ -5,12 +5,15 @@ import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -93,9 +96,34 @@ public class LoginController {
 			
 		}
 		
-		return "error.html";
+		return "login";
 	}
 	
+	@GetMapping(path = "/whoAmI")
+	public ResponseEntity<Integer> whoAmI(HttpSession session){
+
+		UserBean user = (UserBean)session.getAttribute("user");
+
+		if(user != null) {
+			return new ResponseEntity<>(user.getId(), HttpStatus.OK);
+
+		}else {
+			return new ResponseEntity<>(0, HttpStatus.UNAUTHORIZED);
+		}		
+	}
+
+	@PostMapping(path = "/logout")
+	public ResponseEntity<Boolean> logout(HttpSession session){
+
+		UserBean user = (UserBean) session.getAttribute("user");
+
+		if(user != null ) {
+			session.invalidate();
+			return new ResponseEntity<>(true, HttpStatus.OK);
+		}
+
+		return new ResponseEntity<>(false, HttpStatus.UNAUTHORIZED);
+	}
 
 	private String hashPassword(String password) {
 		

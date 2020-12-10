@@ -56,7 +56,7 @@
     
             .movie-meta {
                 flex: 1;
-                padding-right: 8em;
+                padding-right: 5.5em;
             }
     
             .movie-rating {
@@ -79,9 +79,9 @@
         margin-bottom: 2em;
         background-color: #FFF;
         padding: 1em;
-        border-radius: 2px;
+        border-radius: 3px;
         box-shadow: 0 4px 3px -6px #000;
-        border: 1px solid #333;
+        border: 1px solid #c1c1c1;
 
         position: relative;
         transition: .2s ease;
@@ -117,8 +117,8 @@
 
     &-rating {
         position: absolute;
-        top: 1.5em;
-        right: 1.5em;
+        top: 0;
+        right: 0;
         color: #4f4f4f;
         background: #FFF;
         border-radius: 3px;
@@ -223,6 +223,7 @@
 .single-movie {
     position: relative;
     padding: 6em 2em;
+    width: 100%;
 
     &-container {
         margin: 0 auto;
@@ -320,5 +321,73 @@
                 padding-left: 0;
             }
         }
+    }
+}
+
+.movie-comments {
+    margin-bottom: 4em;
+    
+    &-list {
+        list-style: none;
+        padding-left: 0;
+    }
+}
+
+.comment-item {
+    margin: 5em 0;
+    
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.comment-copy {
+    flex: 1 1 100%;
+    padding-top: 1em;
+}
+
+.comment-rating {
+    color: rgba(black, .55);
+}
+
+.comment-author {
+    &-avatar {
+        width: 4em;
+        height: 4em;
+        margin-right: 1em;
+        border-radius: 50%;
+        background-color: transparent;
+        overflow: hidden;
+
+        img {
+            max-width: 100%;
+        }
+    }
+    
+    &-meta {
+        flex: 1;
+        padding-top: .25em;
+    }
+}
+
+.comments-form {
+    textarea {
+        width: 100%;
+        display: block;
+        border-color: #c1c1c1;
+        margin-bottom: 1em;
+        padding: .5em;
+
+        &:focus {
+            border-color: $color-primary;
+            outline: none;
+        }
+    }
+
+    button {
+        margin-left: auto;
+        margin-right: 0;
+        width: 100%;
+        display: block;
+        max-width: 120px;
     }
 }

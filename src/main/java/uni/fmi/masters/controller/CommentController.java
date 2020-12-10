@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,11 +29,10 @@ public class CommentController {
 	}
 	
 	
-	@PostMapping(path = "/comment/add")
+	@PostMapping(path = "/comment/post")
 	public String addComent(
-			@RequestParam(value = "comment")String comment,
-			@RequestParam(value = "temp")double temp,
-			@RequestParam(value = "city")String city,
+			@RequestParam(name = "comment-area")String comment,
+			@RequestParam(name = "rating")int rating,
 			@RequestParam(value = "image")String image,
 			HttpSession session
 			) {
@@ -42,10 +42,8 @@ public class CommentController {
 		if(user != null) {
 			
 			CommentBean commentBean = new CommentBean();
-			commentBean.setCity(city);
 			commentBean.setComment(comment);
 			commentBean.setIcon(image);
-			commentBean.setTemp(temp);
 			commentBean.setUser(user);
 			
 			commentBean = commentRepo.saveAndFlush(commentBean);
@@ -68,6 +66,7 @@ public class CommentController {
 	}
 	
 	@DeleteMapping(path = "/comment/delete")
+	@Secured("ROLE_ADMIN")
 	public ResponseEntity<Boolean> deleteComment(
 			@RequestParam(value = "id")int id,
 			HttpSession session
@@ -84,9 +83,12 @@ public class CommentController {
 		if(optionalComment.isPresent()) {
 			CommentBean comment = optionalComment.get();
 			
-			commentRepo.delete(comment);
-			
-			return new ResponseEntity<>(true, HttpStatus.OK);
+			if(comment.getUser().getId() == user.getId())	{
+				commentRepo.delete(comment);				
+				return new ResponseEntity<>(true, HttpStatus.OK);
+			}else {
+				return new ResponseEntity<>(false, HttpStatus.UNAUTHORIZED);
+			}
 			
 			
 		}else {
