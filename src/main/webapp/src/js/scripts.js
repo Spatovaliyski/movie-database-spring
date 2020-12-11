@@ -114,6 +114,30 @@
 		});
 	}
 
+	getUserDetails();
+	function getUserDetails() {
+		let mee;
+
+		$.ajax({
+			url : "/checkUser",
+			method : "GET",
+			complete : function(data){ 	
+				switch(data.status){
+				case 200:
+					console.log(data);
+					mee = data.responseJSON;
+					break;
+				case 401 :
+					window.location.href="index.html";
+					break;
+				}  				
+
+			},fail : function(){
+				window.location.href="index.html";
+			}
+		});
+	}
+
 	$('#logout').on('click', function(){
 		$.ajax({
 			url: "logout",
