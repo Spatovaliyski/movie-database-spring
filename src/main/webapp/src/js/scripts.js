@@ -94,25 +94,25 @@
 
 	let me;
 
-	// function getWhoAmI(){
-	// 	$.ajax({
-	// 		url : "/whoAmI",
-	// 		method : "GET",
-	// 		complete : function(data){ 	
-	// 			switch(data.status){
-	// 			case 200:
-	// 				me = data.responseJSON;
-	// 				break;
-	// 			case 401 :
-	// 				window.location.href="index.html";
-	// 				break;
-	// 			}  				
+	function getWhoAmI(){
+		$.ajax({
+			url : "/whoAmI",
+			method : "GET",
+			complete : function(data){ 	
+				switch(data.status){
+				case 200:
+					me = data.responseJSON;
+					break;
+				case 401 :
+					window.location.href="index.html";
+					break;
+				}  				
 
-	// 		},fail : function(){
-	// 			window.location.href="index.html";
-	// 		}
-	// 	});
-	// }
+			},fail : function(){
+				window.location.href="index.html";
+			}
+		});
+	}
 
 	$('#logout').on('click', function(){
 		$.ajax({
@@ -135,9 +135,15 @@
 		doRequest(year, genre);
 	}
 
-	if ( ! $('body').hasClass('page-login')) {
-		//getWhoAmI();
+	if ( ! $('body').hasClass('page-login') ) {
+		if ($('body').hasClass('page-error')) {
+			setTimeout(() => {
+				getWhoAmI();
+			}, 2000);
+		} else if ($('body').hasClass('page-register')) {
+			//donothing
+		} else {
+			getWhoAmI();
+		}
 	}
-
-	//getWhoAmI();
 });

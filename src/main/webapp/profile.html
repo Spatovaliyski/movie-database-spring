@@ -6,32 +6,44 @@
     <title>Movies Browser</title>
     <!-- Load Bootstrap compiled master.min.css file -->
     <link rel="stylesheet" href="dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
 
     <!-- Load jQuery from CDN -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <!-- Add our own custom scripts file -->
     <script src="dist/js/bundle.min.js"></script>
 </head>
-<body class="page-register">
+<body class="page-profile">
 
-    <main class="main page-register">
+    <div class="site-header">
+        <div class="site-navigation">
+            <aside class="logo"><a href="home.html" class="site-logo">Movie Network</a></aside>
+            <ul class="menu">
+                <li class="menu-item"><a href="home.html">Home</a></li>
+                <li class="menu-item "><a href="browse.html">Browse</a></li>
+                <li class="menu-item is-active"><a href="profile.html">Profile</a></li>
+                <li class="menu-item"><a href="#" id="logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <main class="main page-profile">
         <div class="container"> 
-            <div class="register-wrap">
+            <div class="account-edit-wrap">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="heading">
-                            <h2 class="heading-title">Sign up</h2>
+                            <h2 class="heading-title">Account management</h2>
                         </div>
                     </div>
                 </div>
     
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="register">
-                            <form id="registration" action="register" method="POST">
+                        <div class="edit-account">
+                            <form id="updateuser" action="updateUser" method="POST">
                                 <div class="login-row">
                                     <label for="username">Username</label>
                                     <input type="text" id="username" name="username" placeholder="example">
@@ -39,23 +51,27 @@
                                 
                                 <div class="login-row mb-5">
                                     <label for="email">Email</label>
-                                    <input type="email" id="email" name="email" placeholder="email@example.com">
+                                    <input type="email" id="email" name="email" placeholder="">
                                 </div>
 
                                 <div class="login-row">
-                                    <label for="password">Password</label>
-                                    <input type="password" id="password" name="password" placeholder="">
+                                    <label for="newPassword">New password</label>
+                                    <input type="password" id="newPassword" name="newPassword" placeholder="">
                                 </div>
 
                                 <div class="login-row mb-5">
-                                    <label for="password">Repeat password</label>
+                                    <label for="repeatPassword">Repeat new password</label>
                                     <input type="password" id="repeatPassword" name="repeatPassword" placeholder="">
+                                </div>
+
+                                <div class="login-row mb-5">
+                                    <label for="oldPassword">What's your old password?</label>
+                                    <input type="password" id="oldPassword" name="oldPassword" placeholder="">
                                 </div>
                                 
     
                                 <div class="action-buttons">
-                                    <button type="submit" form="registration" class="btn btn-primary" action="register">Sign up</button>
-                                    <a href="index.html" class="register-button" id="register">or Login</a>
+                                    <button type="submit" class="btn btn-primary" action="updateuser">Save account</button>
                                 </div>
                             </form>
                         </div>

@@ -15,6 +15,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -50,7 +52,30 @@ public class LoginController {
 		} else {
 			return null;
 		}
+	}
+	
+	@PostMapping(path = "/updateUser")
+	public String updateUser(
+		@RequestParam(name = "email")String email,
+		@RequestParam(name = "username")String username,
+		@RequestParam(name = "oldPassword")String oldPassword,
+		@RequestParam(name = "newPassword")String newPassword,
+		@RequestParam(name = "repeatPassword")String repeatPassword,
+		HttpSession session) throws UsernameNotFoundException, Exception {
 		
+		UserBean user = (UserBean) session.getAttribute("user");
+		
+		if(user != null) {	
+			if(user.getPassword().equals(hashPassword(oldPassword))) {
+				user.setPassword(hashPassword(newPassword));
+				user.setEmail(email);
+				user.setUsername(username);
+				userRepo.save(user);
+			} else {
+				return "home.html";
+			}
+		}
+		return "profile.html";
 	}
 	
 	@PostMapping(path = "/login")
@@ -96,10 +121,10 @@ public class LoginController {
 			
 		}
 		
-		return "login";
+		return "error.html";
 	}
 	
-	@GetMapping(path = "/whoAmI")
+	@RequestMapping(path = "/whoAmI", method = RequestMethod.GET)
 	public ResponseEntity<Integer> whoAmI(HttpSession session){
 
 		UserBean user = (UserBean)session.getAttribute("user");

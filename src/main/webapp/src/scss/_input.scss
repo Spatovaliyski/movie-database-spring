@@ -37,9 +37,10 @@ input[type="email"] {
 }
 
 .login,
-.register {
+.register,
+.edit-account {
     input {
         border: none;
-        border-bottom: 1px solid $color-accent;
+        border-bottom: 1px solid $color-primary;
     }
 }

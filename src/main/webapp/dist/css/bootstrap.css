@@ -10085,7 +10085,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .page-login .container,
 .page-register .container,
-.page-error .container {
+.page-error .container,
+.page-profile .container {
   justify-content: center;
   align-items: center;
   flex-flow: row wrap;
@@ -10094,13 +10095,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .page-login .heading,
 .page-register .heading,
-.page-error .heading {
+.page-error .heading,
+.page-profile .heading {
   max-width: 560px;
   margin: 0 auto;
   width: 100%; }
   .page-login .heading-title,
   .page-register .heading-title,
-  .page-error .heading-title {
+  .page-error .heading-title,
+  .page-profile .heading-title {
     font-weight: 700;
     font-size: 1.5em;
     margin-left: 4px;
@@ -10425,13 +10428,15 @@ input[type="email"] {
     border-color: #0bc6e3; }
 
 .login input,
-.register input {
+.register input,
+.edit-account input {
   border: none;
-  border-bottom: 1px solid #0bc6e3; }
+  border-bottom: 1px solid #111; }
 
 .login,
 .register,
-.error {
+.error,
+.edit-account {
   max-width: 560px;
   background: #FFF;
   padding: 2em;
@@ -10442,35 +10447,42 @@ input[type="email"] {
   border-bottom-right-radius: 0; }
   .login-wrap,
   .register-wrap,
-  .error-wrap {
+  .error-wrap,
+  .edit-account-wrap {
     width: 100%; }
   .login form,
   .register form,
-  .error form {
+  .error form,
+  .edit-account form {
     display: flex;
     flex-flow: column wrap; }
   .login input,
   .register input,
-  .error input {
+  .error input,
+  .edit-account input {
     margin-bottom: 1.5em;
     padding-left: .25em; }
   .login label,
   .register label,
-  .error label {
+  .error label,
+  .edit-account label {
     color: #111;
     font-weight: bold; }
   .login .register-button,
   .register .register-button,
-  .error .register-button {
+  .error .register-button,
+  .edit-account .register-button {
     text-align: right; }
   .login .action-buttons,
   .register .action-buttons,
-  .error .action-buttons {
+  .error .action-buttons,
+  .edit-account .action-buttons {
     display: flex;
     justify-content: space-between; }
   .login .btn,
   .register .btn,
-  .error .btn {
+  .error .btn,
+  .edit-account .btn {
     display: inline-block; }
 
 .login-row {
@@ -10482,16 +10494,24 @@ input[type="email"] {
     display: block;
     width: 100%; }
 
-.login-wrap .heading,
-.register-wrap .heading,
-.error-wrap .heading {
-  transform: translateY(35px);
-  transition-delay: .2s;
-  transition: .2s ease; }
-  .loaded .login-wrap .heading, .loaded
-  .register-wrap .heading, .loaded
-  .error-wrap .heading {
-    transform: translateY(0); }
+.login-wrap,
+.register-wrap,
+.error-wrap,
+.account-edit-wrap {
+  width: 100%;
+  margin: 4em 0; }
+  .login-wrap .heading,
+  .register-wrap .heading,
+  .error-wrap .heading,
+  .account-edit-wrap .heading {
+    transform: translateY(35px);
+    transition-delay: .2s;
+    transition: .2s ease; }
+    .loaded .login-wrap .heading, .loaded
+    .register-wrap .heading, .loaded
+    .error-wrap .heading, .loaded
+    .account-edit-wrap .heading {
+      transform: translateY(0); }
 
 .site-navigation {
   width: 100%;

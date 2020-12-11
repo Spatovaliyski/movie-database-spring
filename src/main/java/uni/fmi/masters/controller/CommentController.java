@@ -31,7 +31,7 @@ public class CommentController {
 	
 	@PostMapping(path = "/comment/post")
 	public String addComent(
-			@RequestParam(name = "comment-area")String comment,
+			@RequestParam(name = "commentarea")String comment,
 			@RequestParam(name = "rating")int rating,
 			@RequestParam(value = "image")String image,
 			HttpSession session

@@ -1,6 +1,7 @@
 .login,
 .register,
-.error {
+.error,
+.edit-account {
     max-width: 560px;
     background: #FFF;
     padding: 2em;
@@ -71,7 +72,11 @@
 
 .login-wrap,
 .register-wrap,
-.error-wrap {
+.error-wrap,
+.account-edit-wrap {
+    width: 100%;
+    margin: 4em 0;
+
     .heading {
         transform: translateY(35px);
         transition-delay: .2s;
