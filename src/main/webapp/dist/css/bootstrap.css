@@ -10185,7 +10185,7 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 4px 3px -6px #000;
   border: 1px solid #c1c1c1;
   position: relative;
-  transition: .2s ease; }
+  transition: .4s ease; }
   .movie-item.is-hidden {
     display: none; }
   @media (max-width: 960px) {
@@ -10362,9 +10362,12 @@ h1, h2, h3, h4, h5, h6 {
     padding-left: 0; }
 
 .comment-item {
-  margin: 5em 0;
+  margin: 4em 0;
+  padding: 1em;
   display: flex;
   flex-flow: row wrap; }
+  .comment-item.is-highlighted {
+    background-color: #fcffec; }
 
 .comment-copy {
   flex: 1 1 100%;
@@ -10556,6 +10559,10 @@ input[type="file"] {
       transition: .2s ease; }
       .menu-item a:hover {
         text-decoration: none; }
+  .menu-item.is-active a {
+    background-color: #2b2b2b; }
+  .menu-item:hover a {
+    background-color: #2b2b2b; }
 
 .logo {
   display: flex;

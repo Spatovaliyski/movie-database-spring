@@ -84,7 +84,7 @@
         border: 1px solid #c1c1c1;
 
         position: relative;
-        transition: .2s ease;
+        transition: .4s ease;
 
         &.is-hidden {
             display: none;
@@ -334,10 +334,15 @@
 }
 
 .comment-item {
-    margin: 5em 0;
+    margin: 4em 0;
+    padding: 1em;
     
     display: flex;
     flex-flow: row wrap;
+
+    &.is-highlighted {
+        background-color: #fcffec;
+    }
 }
 
 .comment-copy {

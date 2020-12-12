@@ -145,7 +145,7 @@
 					alert(response);
 				}else{
 					$('.movie-comments-list').append(`
-						<li class="comment-item">
+						<li class="comment-item is-highlighted">
 							<picture class="comment-author-avatar"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" alt=""></picture>
 							<div class="comment-author-meta">
 								<h4 class="comment-author">Me</h4>
@@ -155,16 +155,12 @@
 						</li>
 					`);				       				
 				 }
-				 
-				 $('#comment').empty();
-				
 			},
 			fail : function(){
 				alert("Something went terribly wrong!!!");
 			}
 			
 		})
-		
 	}
 
 	function favoritesAdd(data){
@@ -277,20 +273,6 @@
 		});
 	}
 
-	$('#logout').on('click', function(){
-		$.ajax({
-			url: "logout",
-			method: "POST",
-			complete : function(data){
-				if(data.status == 401){
-					alert("ERROR!");
-				}
-
-				window.location.href = "index.html";
-			}
-		})		
-	});
-
 	$('.add-to-favorite').click(function(){
 		if (! $(this).hasClass('is-favorite')) {
 			favoritesAdd();
@@ -300,6 +282,8 @@
 	$('.comments-form .btn').click(function(e){
 		e.preventDefault();
 		postComment();
+
+		$('#comment').val("");
 	});
 
 	if ($('body').hasClass('page-movie')) {

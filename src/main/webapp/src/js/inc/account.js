@@ -41,8 +41,9 @@ jQuery(document).ready(function($){
 			    email: $('#email').val()
             },
             success: function(data){
+                console.log(data);
                 window.location.replace(data);
-                console.log(data)
+                alert("Successfully Changed the account information");
             },
             fail: function(data){
                 console.log(data);
@@ -50,4 +51,18 @@ jQuery(document).ready(function($){
             }		
         });
     });
+
+    $('#logout').on('click', function(){
+		$.ajax({
+			url: "logout",
+			method: "POST",
+			complete : function(data){
+				if(data.status == 401){
+					alert("ERROR!");
+				}
+
+				window.location.href = "index.html";
+			}
+		})		
+	});
 });

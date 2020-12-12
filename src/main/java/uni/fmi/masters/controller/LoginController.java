@@ -85,7 +85,7 @@ public class LoginController {
 				return "home.html";
 			}
 		}
-		return "profile.html";
+		return "home.html";
 	}
 	
 	@PostMapping(path = "/login")
