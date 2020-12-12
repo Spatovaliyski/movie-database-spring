@@ -36,12 +36,31 @@ public class UserBean {
 	@Column(name="email", nullable = false, unique = true, length = 256)
 	private String email;
 	
-	@Column(name="image")
-	private String avatarPath;
+	@Column(name="avatar")
+	private String avatar;
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private List<CommentBean> comments;
 	
+//	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+//	private List<FavoriteMoviesBean> favorites;
+	
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+//	public List<FavoriteMoviesBean> getFavorites() {
+//		return favorites;
+//	}
+//
+//	public void setFavorites(List<FavoriteMoviesBean> favorites) {
+//		this.favorites = favorites;
+//	}
+
 	@ManyToMany
 	@JoinTable(name = "account_role",
 	joinColumns=@JoinColumn(name="account_id"),
@@ -67,7 +86,7 @@ public class UserBean {
 		this.username = username;
 		this.password = password;
 		this.email = email;	
-		}
+	}
 
 	public String getUsername() {
 		return username;
@@ -94,11 +113,11 @@ public class UserBean {
 	}
 
 	public String getAvatarPath() {
-		return avatarPath;
+		return avatar;
 	}
 
-	public void setAvatarPath(String avatarPath) {
-		this.avatarPath = avatarPath;
+	public void setAvatarPath(String avatar) {
+		this.avatar = avatar;
 	}
 
 	public int getId() {
@@ -116,5 +135,4 @@ public class UserBean {
 	public void setComments(List<CommentBean> comments) {
 		this.comments = comments;
 	}	
-
 }

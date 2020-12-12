@@ -15,44 +15,44 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import uni.fmi.masters.bean.CommentBean;
+import uni.fmi.masters.bean.FavoriteMoviesBean;
 import uni.fmi.masters.bean.UserBean;
-import uni.fmi.masters.repo.CommentRepo;
+import uni.fmi.masters.repo.FavoritesRepo;
 
 @RestController
-public class CommentController {
-
+public class FavoritesController {
 	
-	CommentRepo commentRepo;
+	FavoritesRepo favoritesRepo;
 	
-	public CommentController(CommentRepo commentRepo) {
-		this.commentRepo = commentRepo;
+	public FavoritesController(FavoritesRepo favoritesRepo) {
+		this.favoritesRepo = favoritesRepo;
 	}
 	
+	@GetMapping(path = "/favorites/all")
+	public List<FavoriteMoviesBean> getAllFavorites(){
+		return favoritesRepo.findAll();
+	}
 	
-	@PostMapping(path = "/comment/post")
-	public String addComent(
-			@RequestParam(name = "commentarea")String comment,
-			@RequestParam(name = "rating")int rating,
+	@PostMapping(path = "/favorites/add")
+	public String addToFavorite(
 			@RequestParam(name = "movieId")String movieId,
 			HttpSession session
 			) {
 		
-		String moviePage = "movie.html?id=";
+		String moviePage = "index.html?id=";
 		UserBean user = (UserBean)session.getAttribute("user");
 		
 		try {
 			if(user != null) {
 				
-				CommentBean commentBean = new CommentBean();
-				commentBean.setComment(comment);
-				commentBean.setUser(user);
-				commentBean.setMovieId(movieId);
-				commentBean.setRating(rating);
+				FavoriteMoviesBean favoritesBean = new FavoriteMoviesBean();
+				favoritesBean.setUser(user);
+				favoritesBean.setMovieId(movieId);
 				
-				commentBean = commentRepo.saveAndFlush(commentBean);
+				favoritesBean = favoritesRepo.saveAndFlush(favoritesBean);
 				
-				if(commentBean != null) {
-					return String.valueOf(commentBean.getId());
+				if(favoritesBean != null) {
+					return String.valueOf(favoritesBean.getId());
 				}
 				
 				return moviePage + movieId;
@@ -63,17 +63,14 @@ public class CommentController {
 		}
 		
 		return moviePage + movieId;
-	}	
-	
-	@GetMapping(path = "/comment/all")
-	public List<CommentBean> getAllComents(){
-		return commentRepo.findAll();
 	}
 	
-	@DeleteMapping(path = "/comment/delete")
-	@Secured("ROLE_ADMIN")
-	public ResponseEntity<Boolean> deleteComment(
+
+	@DeleteMapping(path = "/favorites/remove")
+	//@Secured("ROLE_ADMIN")
+	public ResponseEntity<Boolean> deleteFavorite(
 			@RequestParam(value = "id")int id,
+			@RequestParam(value = "movieId")String movieId,
 			HttpSession session
 			){
 		
@@ -83,13 +80,13 @@ public class CommentController {
 			return new ResponseEntity<>(false, HttpStatus.UNAUTHORIZED);
 		}
 		
-		Optional<CommentBean> optionalComment = commentRepo.findById(id);
+		Optional<FavoriteMoviesBean> optionalFavoriteMovie= favoritesRepo.findById(id);
 		
-		if(optionalComment.isPresent()) {
-			CommentBean comment = optionalComment.get();
+		if(optionalFavoriteMovie.isPresent()) {
+			FavoriteMoviesBean favorite = optionalFavoriteMovie.get();
 			
-			if(comment.getUser().getId() == user.getId())	{
-				commentRepo.delete(comment);				
+			if(favorite.getUser().getId() == user.getId() && favorite.getMovieId() == movieId)	{
+				favoritesRepo.delete(favorite);				
 				return new ResponseEntity<>(true, HttpStatus.OK);
 			}else {
 				return new ResponseEntity<>(false, HttpStatus.UNAUTHORIZED);

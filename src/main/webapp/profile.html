@@ -21,8 +21,7 @@
         <div class="site-navigation">
             <aside class="logo"><a href="home.html" class="site-logo">Movie Network</a></aside>
             <ul class="menu">
-                <li class="menu-item"><a href="home.html">Home</a></li>
-                <li class="menu-item "><a href="browse.html">Browse</a></li>
+                <li class="menu-item"><a href="home.html">Browse</a></li>
                 <li class="menu-item is-active"><a href="profile.html">Profile</a></li>
                 <li class="menu-item"><a href="#" id="logout">Logout</a></li>
             </ul>
@@ -46,12 +45,17 @@
                             <form id="updateuser" action="updateUser" method="POST">
                                 <div class="login-row">
                                     <label for="username">Username</label>
-                                    <input type="text" id="username" name="username" placeholder="example">
+                                    <input type="text" id="username" name="username" placeholder="example" th:value="/@{${user.username}}">
                                 </div>
                                 
                                 <div class="login-row mb-5">
                                     <label for="email">Email</label>
                                     <input type="email" id="email" name="email" placeholder="">
+                                </div>
+                                
+                                <div class="login-row mb-5">
+                                    <label for="email">Avatar</label>
+                                    <input type="file" id="avatar" name="avatar" placeholder="">
                                 </div>
 
                                 <div class="login-row">

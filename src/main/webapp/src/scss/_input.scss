@@ -12,6 +12,10 @@ input[type="email"] {
     }
 }
 
+input[type="file"] {
+    border-bottom: none !important;
+}
+
 .btn {
     &-primary {
         background: $color-primary;

@@ -22,10 +22,9 @@
         <div class="site-navigation">
             <aside class="logo"><a href="home.html" class="site-logo">Movie Network</a></aside>
             <ul class="menu">
-                <li class="menu-item"><a href="home.html">Home</a></li>
-                <li class="menu-item is-active"><a href="browse.html">Browse</a></li>
+                <li class="menu-item"><a href="home.html">Browse</a></li>
                 <li class="menu-item"><a href="profile.html">Profile</a></li>
-                <li class="menu-item"><a href="logout.html?action=logout">Logout</a></li>
+                <li class="menu-item"><a href="#" id="logout">Logout</a></li>
             </ul>
         </div>
     </div>
@@ -37,7 +36,7 @@
             <div class="single-movie-container">
                 <div class="single-movie-thumbnail"></div>
                 <div class="single-movie-meta">
-                    <h2 class="single-movie-title"></h2>
+                    <h2 class="single-movie-title"><span class="add-to-favorite"></span></h2>
                     <div class="single-movie-details">
                         <span class="genres"></span>
                         <span class="runtime">min</span>
@@ -55,15 +54,7 @@
                     </header>
                     <div class="movie-comments">
                         <ul class="movie-comments-list">
-                            <li class="comment-item">
-                                <picture class="comment-author-avatar"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" alt=""></picture>
-                                <div class="comment-author-meta">
-                                    <h4 class="comment-author">Test</h4>
-                                    <span class="comment-rating">8/10</span>
-                                    <div class="comment-copy">Amazing movie but it was too short</div>
-                                </div>
-                                
-                            </li>
+                            <!-- Comments go here -->
                         </ul>
 
                         <form action="comment/post" method="POST" class="comments-form">
@@ -83,15 +74,16 @@
                                 <option value="10">10</option>
                             </select>
 
-                            <input type="hidden" name="movieId" class="movie-id">
+                            
+                            <input type="hidden" name="avatar" class="user-avatar" id="avatar">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4">Test</div>
+                <div class="col-sm-12 col-md-4"></div>
             </div>
         </div>
     </main>
-
+    <input type="hidden" name="movieId" class="movie-id">
 </body>
 </html>

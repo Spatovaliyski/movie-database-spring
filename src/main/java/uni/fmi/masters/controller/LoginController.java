@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import uni.fmi.masters.WebSecurityConfig;
 import uni.fmi.masters.bean.UserBean;
@@ -60,18 +61,25 @@ public class LoginController {
 	public String updateUser(
 		@RequestParam(name = "email")String email,
 		@RequestParam(name = "username")String username,
+		@RequestParam(name = "avatar")String avatar,
 		@RequestParam(name = "oldPassword")String oldPassword,
 		@RequestParam(name = "newPassword")String newPassword,
 		@RequestParam(name = "repeatPassword")String repeatPassword,
-		HttpSession session) throws UsernameNotFoundException, Exception {
+		HttpSession session) {
 		
 		UserBean user = (UserBean) session.getAttribute("user");
 	
-		if(user != null) {	
+		if(user != null) {
 			if(user.getPassword().equals(hashPassword(oldPassword))) {
 				user.setPassword(hashPassword(newPassword));
 				user.setEmail(email);
 				user.setUsername(username);
+				user.setAvatarPath(avatar);
+				userRepo.save(user);
+			} else if(newPassword.isEmpty() && oldPassword.isEmpty() && repeatPassword.isEmpty()) {
+				user.setEmail(email);
+				user.setUsername(username);
+				user.setAvatarPath(avatar);
 				userRepo.save(user);
 			} else {
 				return "home.html";

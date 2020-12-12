@@ -1,7 +1,5 @@
 package uni.fmi.masters.bean;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,15 +11,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "comment")
-public class CommentBean implements Serializable {
-	
+@Table(name = "favorites")
+public class FavoriteMoviesBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(name = "comment", length = 1000)
-	private String comment;
 	
 	@Column(name = "movieId", nullable = false)
 	private String movieId;
@@ -30,32 +24,12 @@ public class CommentBean implements Serializable {
 	@JoinColumn(name = "user_id")
 	private UserBean user;
 
-	@Column(name = "rating", length = 5)
-	private int rating;
-
-	
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getRating() {
-		return rating;
-	}
-
-	public void setRating(int rating) {
-		this.rating = rating;
-	}
-
-	public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
 	}
 
 	public String getMovieId() {
@@ -73,5 +47,4 @@ public class CommentBean implements Serializable {
 	public void setUser(UserBean user) {
 		this.user = user;
 	}
-	
 }

@@ -34,6 +34,7 @@ jQuery(document).ready(function($){
             method: "POST",
             data: {
                 username: $('#username').val(),
+                avatar: $('#avatar').val(),
                 oldPassword: $('#oldPassword').val(),
                 newPassword: $('#newPassword').val(),
                 repeatPassword: $('#repeatPassword').val(),
